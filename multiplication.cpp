@@ -5,19 +5,26 @@ using namespace std;
 vector<int> multiplication(vector<int> &a, vector<int> &b, int precision, int base)
 {
     vector<int> c;
-    int  carry = 0;
-    for(int i = 0; i<a.size()+b.size()-1; i++)
+    int carry = 0;
+    for (int i = 0; i < a.size() + b.size(); i++)
     {
         c.push_back(0);
     }
-    for(int i = 0; i< a.size(); i++)
+    for (int i = 0; i < a.size(); i++)
     {
         carry = 0;
-        for(int j = 0; j < b.size(); j++)
+        for (int j = 0; j < b.size(); j++)
         {
-            int tmp = a[i]*b[j] + carry;
+            int tmp = a[i] * b[j] + carry + c[i + j];
             carry = tmp / base;
-            c[i+j] = tmp % base;
+            c[i + j] = tmp % base;
         }
+        c[b.size() + i] = carry;
     }
+    // cout<<
+    // if (carry != 0)
+    // {
+    //     c.push_back(carry);
+    // }
+    return c;
 }
