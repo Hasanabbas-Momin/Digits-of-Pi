@@ -2,11 +2,26 @@
 #include "header.hpp"
 using namespace std;
 
-vector<int> subtraction(vector<int> &a, vector<int> &b, int precision, int base)
+pair<vector<int>, int> subtraction(vector<int> &x, int x_point, vector<int> &y, int y_point, int precision, int base)
 {
+    // cout << "in subtraction \n";
+    vector<int> a, b;
+    int zeros = x_point - y_point;
+    vector<int> ans;
+    int ans_point = max (x_point, y_point);
+    for (int i = 0; i < zeros; i++)
+        b.push_back(0);
+    for (int i = 0; i < -zeros; i++)
+        a.push_back(0);
+
+    for (int i = 0; i < y.size(); i++)
+        b.push_back(y[i]);
+    for (int i = 0; i < x.size(); i++)
+        a.push_back(x[i]);
+
     int carry = 0;
     int i = 0, j = 0;
-    vector<int> ans;
+
     while (i < a.size() && j < b.size())
     {
         if (a[i] - b[j] + carry < 0)
@@ -19,7 +34,8 @@ vector<int> subtraction(vector<int> &a, vector<int> &b, int precision, int base)
             ans.push_back(a[i] - b[i] + carry);
             carry = 0;
         }
-        i ++; j++;
+        i++;
+        j++;
     }
     while (i < a.size())
     {
@@ -49,5 +65,5 @@ vector<int> subtraction(vector<int> &a, vector<int> &b, int precision, int base)
         }
         j++;
     }
-    return ans;
+    return make_pair(ans, ans_point);
 }

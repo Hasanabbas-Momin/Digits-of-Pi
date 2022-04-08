@@ -2,8 +2,9 @@
 #include "header.hpp"
 using namespace std;
 
-vector<int> multiplication(vector<int> &a, vector<int> &b, int precision, int base)
+pair<vector<int>, int> multiplication(vector<int> &a, int a_point, vector<int> &b, int b_point, int precision, int base)
 {
+    // cout << "in multiplication \n";
     vector<int> c;
     int carry = 0;
     for (int i = 0; i < a.size() + b.size(); i++)
@@ -26,5 +27,6 @@ vector<int> multiplication(vector<int> &a, vector<int> &b, int precision, int ba
     // {
     //     c.push_back(carry);
     // }
-    return c;
+    int c_point = (a_point + b_point);
+    return make_pair(c, c_point);
 }
