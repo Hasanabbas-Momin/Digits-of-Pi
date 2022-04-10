@@ -22,11 +22,6 @@ pair<vector<int>, int> multiplication(vector<int> &a, int a_point, vector<int> &
         }
         c[b.size() + i] = carry;
     }
-    // cout<<
-    // if (carry != 0)
-    // {
-    //     c.push_back(carry);
-    // }
     int c_point = (a_point + b_point);
     return make_pair(c, c_point);
 }
